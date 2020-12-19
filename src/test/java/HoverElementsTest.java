@@ -15,11 +15,9 @@ public class HoverElementsTest {
     Utils utils;
     List<WebElement> hoversElements;
     ArrayList<String> list;
-    int countCheck = 0;
-    int countProfil = 0;
 
     @BeforeMethod
-    public void initTest(){
+    public void initTest() {
         utils = new Utils();
         utils.setPropertyDriver();
 
@@ -30,63 +28,66 @@ public class HoverElementsTest {
         utils.openSite(driver, Constants.Hovers.URL_ELEMENTS);
     }
 
-    @Test(invocationCount = 3)
-    public void hoversTestProfil(){
-        //init elements
+    @Test
+    public void hoversTestProfil() {
         initHover();
         initList();
         testProfil();
     }
 
-    @Test(invocationCount = 3)
-    public void hoversTestCheck(){
+    @Test
+    public void hoversTestCheck() {
         //init elements
         initHover();
         initList();
         testCheck();
     }
 
-    public void testCheck(){
-        WebElement hoversElement = hoversElements.get(countCheck);
-
-        //mouse movement and grip
+    public void testCheck() {
         Actions builder = new Actions(driver);
-        builder.moveToElement(hoversElement).perform();
+        List<WebElement> hrefElementsList = new ArrayList<WebElement>();
+        int count = hoversElements.size();
+        for (int i = 0; i < count; i++) {
+            initHover();
+            WebElement element = hoversElements.get(i);
+            builder.moveToElement(element).perform();
+            //get element by tag name
+            WebElement href = utils.getElementByTagName(element, "a");
+            hrefElementsList.add(href);
+            utils.elementClick(href);
 
-        //get element by tag name
-        WebElement href = utils.getElementByTagName(hoversElement, "a");
-        //click by element
-        utils.elementClick(href);
-
-        String text404 = utils.getElementByTagName(driver, "h1").getText();
-        String message = "Actual = " + text404 + ", expected = " + Constants.Hovers.NOT_FOUND_TEXT;
-        //check result
-        utils.checkResult(text404, Constants.Hovers.NOT_FOUND_TEXT, message);
-        countCheck ++;
+            String text404 = utils.getElementByTagName(driver, "h1").getText();
+            String message = "Actual = " + text404 + ", expected = " + Constants.Hovers.NOT_FOUND_TEXT;
+            //check result
+            utils.checkResult(text404, Constants.Hovers.NOT_FOUND_TEXT, message);
+            driver.navigate().back();
+        }
     }
 
-    public void testProfil(){
+    public void testProfil() {
         //mouse movement and grip
         Actions builder = new Actions(driver);
-        WebElement hoversElement = hoversElements.get(countProfil);
-        builder.moveToElement(hoversElement).perform();
 
-        String item = list.get(countProfil);
-        //get element by tag name
-        String textElement =  utils.getTextElementByTagName(hoversElement, "h5");
-
-        String message = "Actual = " + textElement + ", expected = " + item;
-        //check result
-        utils.checkResult(textElement, item, message);
-        countProfil ++;
+        List<String> textElementsList = new ArrayList<String>();
+        for (WebElement element : hoversElements) {
+            builder.moveToElement(element).perform();
+            //get element by tag name
+            String textElement = utils.getTextElementByTagName(element, "h5");
+            textElementsList.add(textElement);
+            int count = textElementsList.size();
+            String item = list.get(count-1);
+            String message = "Actual = " + textElement + ", expected = " + item;
+            //check result
+            utils.checkResult(textElement, item, message);
+        }
     }
 
-    public void initHover(){
+    public void initHover() {
         WebElement hover = utils.getElementByXpath(driver, Constants.Hovers.ID_ELEMENTS);
         hoversElements = utils.getElementsByElementByClass(hover, Constants.Hovers.CLASSNAME_ELEMENTS);
     }
 
-    public void initList(){
+    public void initList() {
         list = new ArrayList<String>();
         list.add("name: user1");
         list.add("name: user2");
@@ -94,7 +95,7 @@ public class HoverElementsTest {
     }
 
     @AfterMethod
-    public void exitTest(){
+    public void exitTest() {
         utils.quitDriver(driver);
     }
 }

@@ -27,28 +27,28 @@ public class CheckboxElementsTest {
     public void uncheckedFirstTest(){
         //init elements
         initCheckboxElements();
-        checkboxTest(checkboxElements.get(0), false, false);
+        isCheckboxCheckedTest(checkboxElements.get(0), false, false);
     }
 
     @Test
     public void checkedFirstTest(){
         //init elements
         initCheckboxElements();
-        checkboxTest(checkboxElements.get(0), true, true);
+        isCheckboxCheckedTest(checkboxElements.get(0), true, true);
     }
 
     @Test
     public void checkedSecondTest(){
         //init elements
         initCheckboxElements();
-        checkboxTest(checkboxElements.get(1), true, false);
+        isCheckboxCheckedTest(checkboxElements.get(1), true, false);
     }
 
     @Test
     public void uncheckedSecondTest(){
         //init elements
         initCheckboxElements();
-        checkboxTest(checkboxElements.get(1), false, true);
+        isCheckboxCheckedTest(checkboxElements.get(1), false, true);
     }
 
     @AfterMethod
@@ -56,19 +56,19 @@ public class CheckboxElementsTest {
         utils.quitDriver(driver);
     }
 
-    public void checkboxTest(WebElement checkbox, boolean isSelected, boolean isClick){
+    public void isCheckboxCheckedTest(WebElement checkbox, boolean isSelected, boolean isClick){
         if(isClick){
             //click by element
             utils.elementClick(checkbox);
         }
         //check elements
-        boolean isChecked = isCheckCheckbox(checkbox);
+        boolean isChecked = isCheckboxChecked(checkbox);
         String message = "Actual = " + String.valueOf(isChecked) + ", expected = " + String.valueOf(isSelected);
         //check result
         utils.checkResult(String.valueOf(isChecked), String.valueOf(isSelected), message);
     }
 
-    public boolean isCheckCheckbox(WebElement checkbox){
+    public boolean isCheckboxChecked(WebElement checkbox){
         return checkbox.isSelected();
     }
 

@@ -38,10 +38,6 @@ public class Utils {
         return element.findElement(By.tagName(tagName)).getText();
     }
 
-    public List<WebElement> getElementsByTagName(WebDriver driver, String tagName){
-        return driver.findElements(By.tagName(tagName));
-    }
-
     public WebElement getElementByTagName(WebElement element, String tagName){
         return element.findElement(By.tagName(tagName));
     }
@@ -50,16 +46,8 @@ public class Utils {
         return driver.findElement(By.tagName(tagName));
     }
 
-    public void clickByElementName(WebDriver driver, String name){
-        driver.findElement(By.name(name)).click();
-    }
-
     public void checkResult(String actualCategoryText, String expectedCategoryText, String message){
         Assert.assertEquals(actualCategoryText, expectedCategoryText, message);
-    }
-
-    public void closeDriver(WebDriver driver){
-        driver.close();
     }
 
     public void quitDriver(WebDriver driver){
