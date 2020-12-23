@@ -25,7 +25,7 @@ public class AddRemoveElementsTest {
 
     @Test
     public void addTest(){
-        clickOnAddElementButton();
+        clickCycle(countBtnRemovableEl);;
         //init elements
         List<WebElement> btnRemovableElements = initRemoveBtn();
         //check result
@@ -50,13 +50,17 @@ public class AddRemoveElementsTest {
 
     public void clickOnAddElementButton(){
         //click by element
-        for(int i = 0; i < countBtnRemovableEl; i++) {
             utils.elementClick(initAddBtn());
+    }
+
+    public void clickCycle(int count){
+        for(int i = 0; i < count; i++) {
+            clickOnAddElementButton();
         }
     }
 
     public void clickOnRemoveElementButton(){
-        clickOnAddElementButton();
+        clickCycle(countBtnRemovableEl);
         //init elements
         List<WebElement> btnRemovableElements = initRemoveBtn();
         //click by element
