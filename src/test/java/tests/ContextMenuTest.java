@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 public class ContextMenuTest extends BaseTest {
 
     @Test
-    public void checkСontextMenuMessageTest() {
+    public void checkContextMenuMessageTest() {
         contextMenuPage.openPage();
         contextMenuPage.clickElementContextMenu();
         Alert alert =  contextMenuPage.getAlert();

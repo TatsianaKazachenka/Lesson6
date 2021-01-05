@@ -5,8 +5,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pages.constants.BasePageConstants;
-import pages.constants.DynamicControlsConstants;
+
+import static pages.constants.BasePageConstants.BASE_URL;
+import static pages.constants.DynamicControlsConstants.URL;
 
 public class DynamicControlsPage extends BasePage {
     public DynamicControlsPage(WebDriver driver) {
@@ -18,8 +19,7 @@ public class DynamicControlsPage extends BasePage {
     public static final By REMOVE_ADD_MESSAGE = By.xpath("//*[@id='message']");
 
     public void openPage() {
-        String url = BasePageConstants.BASE_URL + DynamicControlsConstants.URL;
-        driver.get(url);
+        driver.get(BASE_URL + URL);
     }
 
     public boolean isFindCheckbox() {
@@ -31,11 +31,11 @@ public class DynamicControlsPage extends BasePage {
         }
     }
 
-    public void clockRemoveAddBtn() {
+    public void clickRemoveAddBtn() {
         driver.findElement(REMOVE_ADD_BUTTON).click();
     }
 
-    public void waitShowElement() {
+    public void waitForMessageDisplayed() {
         WebDriverWait wait = new WebDriverWait(driver, 20);
         wait.until(ExpectedConditions.visibilityOfElementLocated(REMOVE_ADD_MESSAGE));
     }

@@ -15,8 +15,8 @@ public class DynamicControlsTest extends BaseTest {
     @Test
     public void checkMessageTest() {
         dynamicControlsPage.openPage();
-        dynamicControlsPage.clockRemoveAddBtn();
-        dynamicControlsPage.waitShowElement();
+        dynamicControlsPage.clickRemoveAddBtn();
+        dynamicControlsPage.waitForMessageDisplayed();
         String message = dynamicControlsPage.getMessage();
         Assert.assertEquals(message, "It's gone!");
     }
@@ -24,8 +24,8 @@ public class DynamicControlsTest extends BaseTest {
     @Test
     public void isCheckboxExistsTest() {
         dynamicControlsPage.openPage();
-        dynamicControlsPage.clockRemoveAddBtn();
-        dynamicControlsPage.waitShowElement();
+        dynamicControlsPage.clickRemoveAddBtn();
+        dynamicControlsPage.waitForMessageDisplayed();
         boolean isCheckbox = dynamicControlsPage.isFindCheckbox();
         Assert.assertFalse(isCheckbox);
     }

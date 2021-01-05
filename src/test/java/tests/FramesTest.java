@@ -8,8 +8,8 @@ public class FramesTest extends BaseTest{
     @Test
     public void checkIFrameTest() {
         framesPage.openPage();
-        framesPage.clockIFrame();
-        String text = framesPage.getTextIFrame();
+        framesPage.clickOnIFrameLink();
+        String text = framesPage.getIFrameText();
         Assert.assertEquals(text, "Your content goes here.");
     }
 }

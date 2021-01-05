@@ -5,8 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import pages.constants.BasePageConstants;
-import pages.constants.ContextMenuPageConstants;
+
+import static pages.constants.BasePageConstants.BASE_URL;
+import static pages.constants.ContextMenuPageConstants.URL;
 
 public class ContextMenuPage extends BasePage {
     public ContextMenuPage(WebDriver driver) {
@@ -16,8 +17,7 @@ public class ContextMenuPage extends BasePage {
     public static final By ELEMENT_FOR_CONTEXT_MENU = By.xpath("//*[@id='hot-spot']");
 
     public void openPage() {
-        String url = BasePageConstants.BASE_URL + ContextMenuPageConstants.URL;
-        driver.get(url);
+        driver.get(BASE_URL + URL);
     }
 
     public void clickElementContextMenu() {
@@ -31,8 +31,7 @@ public class ContextMenuPage extends BasePage {
     }
 
     public String getTextForAlert(Alert alert) {
-        String textAlert = alert.getText();
-        return textAlert;
+        return alert.getText();
     }
 
     public void closeAlert(Alert alert) {
