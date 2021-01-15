@@ -24,9 +24,9 @@ public class UploadPage extends BasePage {
         driver.get(BASE_URL + URL);
     }
 
-    public void uploadFile() {
+    public void uploadFile(String fileName) {
         WebElement upload = driver.findElement(UPLOAD_FILE_INPUT);
-        URL pathURL = getClass().getClassLoader().getResource("TestUpload.txt");
+        URL pathURL = getClass().getClassLoader().getResource(fileName);
         String path = null;
         try {
             path = Paths.get(pathURL.toURI()).toString();

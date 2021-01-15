@@ -7,9 +7,10 @@ public class UploadTest extends BaseTest{
 
     @Test
     public void findCheckboxTest() {
+        String fileName = "TestUpload.txt";
         uploadPage.openPage();
-        uploadPage.uploadFile();
+        uploadPage.uploadFile(fileName);
         String name = uploadPage.getFileName();
-        Assert.assertEquals(name, "TestUpload.txt");
+        Assert.assertEquals(name, fileName);
     }
 }
